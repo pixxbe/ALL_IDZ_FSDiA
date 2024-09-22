@@ -8,8 +8,9 @@ int main()
     PushUp(List, 3);
     PushUp(List, 15);
     PushBack(List, 2);
+    PushUp(List, 15);
     PrintList(List);
-    DeleteAllList(List);
+    DeleteElem(List, 15);
     PrintList(List);
 }
 

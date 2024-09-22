@@ -74,4 +74,39 @@ void DeleteAllList(Node*& head)
     
 }
 
+//Удаление всех вхождений заданного по значению элемента
+void DeleteElem(Node*& head, int value) 
+{
+    if (head == nullptr)
+    {
+        cout << "Список пуст, удаление невозможно." << endl;
+        return;
+    }
+
+    if (head->data == value) 
+    {
+        while (head->data == value) {
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
+
+    // Поиск элемента в списке
+    Node* temp = head;
+    while (temp->next != nullptr && temp->next->data != value) 
+    {
+        if (temp->data == value)
+        {
+            Node* vrem = temp;
+            temp = temp->next;
+            delete vrem;
+        }
+        else
+        {
+            temp = temp->next;
+        }
+    }
+}
+
 #endif /* ИДЗ1_hpp */#pragma once
