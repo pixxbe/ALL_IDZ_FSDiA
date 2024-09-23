@@ -18,17 +18,23 @@ void PushUp(Node*& head)
     int n;
     cout << "Введите количество элементов, которые вы хотите ввести: ";
     cin >> n;
-    cout << "Введиет элементы, которые хотите добавить в список: ";
-    for (int i = 0; i < n; i++)
-    {   
-        Node* new_node = new Node;
-        
-        cin >> new_node->data;
-        new_node->next = head;
-        head = new_node;
+    if (n == 0)
+    {
+        cout << "Список не был создан." << endl;
+        return;
     }
-    cout << endl;
-
+    else
+    {
+        cout << "Введиет элементы, которые хотите добавить в список: ";
+        for (int i = 0; i < n; i++)
+        {   
+            Node* new_node = new Node;
+            cin >> new_node->data;
+            new_node->next = head;
+            head = new_node;
+        }
+        cout << endl;
+    }
 }
 
 // 7)Печать всего списка
@@ -160,6 +166,63 @@ void SearchElem(Node*& head, int value)
         }
         cout << "позициях." << endl;
     }
+}
+
+// 8) Пересечение двух списков
+//ДОП
+void PushUp2(Node*& head, int value) 
+{
+    Node* new_node = new Node;
+    new_node->data = value;
+    new_node->next = head;
+    head = new_node;
+}
+// ДОП
+void PrintList2(Node* head)
+{
+    Node* temp = head;
+    cout << "Пересечение: ";
+    while (temp != nullptr)
+    {
+        cout << temp->data << ", ";
+        temp = temp->next;
+    }
+    cout << endl;
+
+}
+void CrossingLists(Node*& head)
+{
+    Node* List2 = nullptr;
+    PushUp(List2);
+    Node* temp = head;
+    while (temp != nullptr)
+    {
+        Node* temp2 = List2;
+        int CountDouble = 0;
+        while (temp2 != nullptr)
+        {
+            if (temp->data == temp2->data)
+            {
+                CountDouble = 1;
+                break;
+            }
+            else
+            {
+                temp2 = temp2->next;
+            }
+        }
+        if (CountDouble == 0) 
+        {
+            PushUp2(List2, temp->data);
+            temp = temp->next;
+        }
+        else
+        {
+            temp = temp->next;
+        }
+    }
+    PrintList2(List2);
+    DeleteAllList(List2);
 }
 
 #endif /* ИДЗ1_hpp */#pragma once
