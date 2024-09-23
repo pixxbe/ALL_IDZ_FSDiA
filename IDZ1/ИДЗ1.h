@@ -11,7 +11,7 @@ struct Node
     Node* next;
 };
 
-// Добавление элемента в начало (Инициализация)
+// 1)Добавление элемента в начало (Инициализация)
 void PushUp(Node*& head, int value)
 {
     Node* new_node = new Node;
@@ -20,7 +20,7 @@ void PushUp(Node*& head, int value)
     head = new_node;
 }
 
-// Печать всего списка
+// 7)Печать всего списка
 void PrintList(Node* head)
 {   
     if (head == nullptr)
@@ -41,7 +41,7 @@ void PrintList(Node* head)
 
 }
 
-// Добавление в конец списка 
+// 3)Добавление в конец списка 
 void PushBack(Node*& head, int value)
 {
     Node* new_node = new Node;
@@ -62,7 +62,7 @@ void PushBack(Node*& head, int value)
     }
 }
 
-// Освобождение памяти (удалние всех элементов спсика)
+// 2)Освобождение памяти (удалние всех элементов спсика)
 void DeleteAllList(Node*& head)
 {   
     while (head != nullptr)
@@ -74,7 +74,7 @@ void DeleteAllList(Node*& head)
     
 }
 
-//Удаление всех вхождений заданного по значению элемента
+// 4)Удаление всех вхождений заданного по значению элемента
 void DeleteElem(Node*& head, int value) 
 {
     if (head == nullptr)
@@ -106,6 +106,37 @@ void DeleteElem(Node*& head, int value)
         {
             temp = temp->next;
         }
+    }
+}
+
+// (Доп) Функция подсчитываюзщая кол-во элементов массива
+int CountElem(Node* head)
+{
+    Node* temp = head;
+    if (head == nullptr)
+    {
+        cout << "Данный список пуст." << endl;
+        return 0;
+    }
+    else
+    {
+        int count = 0;
+        while (temp != nullptr)
+        {
+            count++;
+            temp = temp->next;
+        }
+        return count;
+    }
+}
+
+// 6)Поиск заданного элемента по значению
+void searchElem(Node*& head, int value)
+{
+    Node* temp = head;
+
+    while (temp != nullptr) {
+
     }
 }
 
