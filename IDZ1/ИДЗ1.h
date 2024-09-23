@@ -2,6 +2,7 @@
 #define ИДЗ1_hpp
 
 #include <iostream>
+#include <vector>
 #include "ИДЗ1.h"
 using namespace std;
 
@@ -12,12 +13,22 @@ struct Node
 };
 
 // 1)Добавление элемента в начало (Инициализация)
-void PushUp(Node*& head, int value)
+void PushUp(Node*& head)
 {
-    Node* new_node = new Node;
-    new_node->data = value;
-    new_node->next = head;
-    head = new_node;
+    int n;
+    cout << "Введите количество элементов, которые вы хотите ввести: ";
+    cin >> n;
+    cout << "Введиет элементы, которые хотите добавить в список: ";
+    for (int i = 0; i < n; i++)
+    {   
+        Node* new_node = new Node;
+        
+        cin >> new_node->data;
+        new_node->next = head;
+        head = new_node;
+    }
+    cout << endl;
+
 }
 
 // 7)Печать всего списка
@@ -25,19 +36,19 @@ void PrintList(Node* head)
 {   
     if (head == nullptr)
     {
-        cout << "Список пуст" << endl;
+        cout << "Список пуст";
     }
     else
     {
         Node* temp = head;
-        cout << "NULL -> ";
         while (temp != nullptr)
         {
             cout << "адрес: [" << temp->next << "] значение: " << temp->data << " -> ";
             temp = temp->next;
         }
-        cout << "NULL" << endl;
+        cout << "NULL";
     }
+    cout << endl;
 
 }
 
@@ -107,36 +118,47 @@ void DeleteElem(Node*& head, int value)
             temp = temp->next;
         }
     }
-}
-
-// (Доп) Функция подсчитываюзщая кол-во элементов массива
-int CountElem(Node* head)
-{
-    Node* temp = head;
-    if (head == nullptr)
-    {
-        cout << "Данный список пуст." << endl;
-        return 0;
-    }
-    else
-    {
-        int count = 0;
-        while (temp != nullptr)
-        {
-            count++;
-            temp = temp->next;
-        }
-        return count;
-    }
+    cout << endl;
 }
 
 // 6)Поиск заданного элемента по значению
-void searchElem(Node*& head, int value)
+void SearchElem(Node*& head, int value)
 {
     Node* temp = head;
+    vector <int> Poz;
+    int CountPoz = 0, CountElem = 0;
 
-    while (temp != nullptr) {
+    while (temp != nullptr)
+    {
+        CountPoz++;
+        if (temp->data == value)
+        {   
+            Poz.push_back(CountPoz);
+            temp = temp->next;
+            CountElem++;
+        }
+        else
+        {
+            temp = temp->next;
+        }
+    }
+    if (CountElem == 0)
+    {
+        cout << "Заданного элемента нет в списке." << endl;
+    }
+    else if (CountElem == 1)
+    {
 
+        cout << "Заданный элемент находится на " << Poz[0] << " позиции." << endl;
+    }
+    else
+    {
+        cout << "Заданный элемент находится на ";
+        for (int i = 0; i < Poz.size(); i++)
+        {
+            cout << Poz[i] << ", ";
+        }
+        cout << "позициях." << endl;
     }
 }
 
